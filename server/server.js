@@ -12,7 +12,19 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 
 io.on('connection',(socket)=>{
-    console.log('New user connected');   
+    console.log('New user connected'); 
+    
+    socket.emit('greetUser',{
+        from:'Admin',
+        text:'welcome to the chat app',
+        createdAt: new Date().getTime()
+    });
+    
+    socket.broadcast.emit('greetUser',{
+        from:'Admin',
+        text:'New User joined',
+        createdAt: new Date().getTime()
+    })
 
     socket.on('createMessage',(newMessage)=>{
         console.log('createMessage',newMessage);
