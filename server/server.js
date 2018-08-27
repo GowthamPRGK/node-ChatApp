@@ -47,7 +47,7 @@ io.on('connection',(socket)=>{
         var user = users.getUser(socket.id);
         if(user){
         io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,coords.latitude,coords.longitude));}
-        
+
     });
 
     socket.on('disconnect',()=>{     
@@ -64,5 +64,7 @@ io.on('connection',(socket)=>{
 
 
 server.listen(port,()=>{
-    console.log(`server is up on port ${port}`);
+    console.log(`server is up on port number: ${port}`);
 })
+
+//copyright by gowthamK
